@@ -1,0 +1,76 @@
+
+This folder contains the files which are necessary to bundle DARFI into a
+single executable on Windows platform.
+
+Before you start the prerequisites listed below should be installed on your
+Windows machine:
+
+python-2.7
+numpy
+six
+PyQt4
+matplotlib
+scipy
+Pillow
+scikit-image
+SIP
+xlsxwriter
+py2exe
+NSIS
+
+
+The configuration which was tested successfully:
+
+
+python-2.7.7
+numpy-1.9.2+mkl-cp27-none-win32
+six-1.8.0.win32-py2.7
+PyQt4-4.11.2-gpl-Py2.7-Qt4.8.6-x32
+matplotlib-1.4.0.win32-py2.7
+scipy-0.14.0-win32-superpack-python2.7
+Pillow-2.5.3.win32-py2.7
+networkx-1.9.1-py2.py3-none-any
+scikit_image-0.11.3-cp27-none-win32
+SIP-4.6.13
+XlsxWriter-0.8.6-py2.py3-none-any
+py2exe-0.6.9
+NSIS-2.46
+
+
+
+
+Build instructions:
+
+-- put Microsoft Visual C++ runtime library MSVCP90.dll or it's opensource 
+counterpart from wineHQ project to darfi/py2exe directory
+
+-- replace original python2.7/Lib/site-packages/skimage/__init__.py file
+with the one from darfi/py2exe/_skimage directory
+
+
+-- Uncomment the following line in darfi/py2exe/setup.py if you want to see
+console output when application runs:
+
+    console = [{'script': script}],
+
+and comment
+
+#    windows=[{'script':script}],
+
+
+If console output is off, the warnings should be suppressed in simple_gui.py
+
+
+-- enter darfi/py2exe directory and run:
+
+>> python setup.py
+
+
+-- compile setup.nsi script using NSIS (right click on the script file and
+select <compile NSIS script> from menu)
+
+-- darfi.exe file should appear in darfi/py2exe directory if everything went
+well.
+
+
+

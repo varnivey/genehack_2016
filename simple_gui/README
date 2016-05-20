@@ -1,0 +1,30 @@
+This folder contains _the_simplest_ GUI for DARFI
+It is written with pyqt4
+
+to install DARFI on ubuntu like linux (tested on 14.01 and 13.10) follow the instructions 
+1.
+sudo apt-get install python-tk python-setuptools python-numpy python-matplotlib python-dev python-qt4 python-qt4-dev python-sip python-sip-dev build-essential gfortran libqt4-dev qt4-qmake libpq-dev libsqlite3-dev qt4-dev-tools qt4-doc unixodbc-dev pyqt4-dev-tools
+sudo easy_install -U scikit-image
+
+2.
+wget http://downloads.sourceforge.net/project/pyqt/sip/sip-4.16.3/sip-4.16.3.tar.gz
+extract to a suitable location. Get into the directory and execute the following
+
+python config.py
+make
+sudo make install
+
+3.
+wget http://downloads.sourceforge.net/project/pyqt/PyQt4/PyQt-4.10.4/PyQt-x11-gpl-4.10.4.tar.gz
+extract to a suitable location. Get into the directory and execute the following
+python configure-ng.py
+make
+# if you get an error about missing <Python.h> you can just exec
+# sudo ln -s /usr/include/python2.7 /usr/local/include/python2.7
+# or get your hands dirty and mess with "configure-ng.py" file
+sudo make install
+
+to run gui simply exec
+python simple_gui.py
+
+
