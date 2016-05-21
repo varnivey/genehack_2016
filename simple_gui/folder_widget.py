@@ -158,6 +158,7 @@ class FolderWidget(QtGui.QWidget):
                     pass
                 else:
 #                    Save bad cell somewhere
+                    pass
 
 
     def calculateSelected(self):
