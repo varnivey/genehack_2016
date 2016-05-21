@@ -178,15 +178,17 @@ class FolderWidget(QtGui.QWidget):
                     # log_message(unicode('writing to %s' % good_path).encode('utf8'))
                     imsave(os.path.join(good_path, 'nucleus_%s_%03d_%03d.png' % (prefix, imagedir_num, i)), cell.nucleus)
                     imsave(os.path.join(good_path, 'pic_nucleus_%s_%03d_%03d.png' % (prefix, imagedir_num, i)), cell.pic_nucleus)
-                    if (cell.pic_foci is not None):
-                        imsave(os.path.join(good_path, 'pic_foci_%s_%03d_%03d.png' % (prefix, imagedir_num, i)), cell.pic_foci)
+                    if hasattr(cell, 'pic_foci'):
+                        if (cell.pic_foci is not None):
+                          imsave(os.path.join(good_path, 'pic_foci_%s_%03d_%03d.png' % (prefix, imagedir_num, i)), cell.pic_foci)
                 else:
 #                    Save bad cell somewhere
                     # log_message(unicode('writing to %s' % bad_path).encode('utf8'))
                     imsave(os.path.join(bad_path, 'nucleus_%s_%03d_%03d.png' % (prefix, imagedir_num, i)), cell.nucleus)
                     imsave(os.path.join(bad_path, 'pic_nucleus_%s_%03d_%03d.png' % (prefix, imagedir_num, i)), cell.pic_nucleus)
-                    if (cell.pic_foci is not None):
-                        imsave(os.path.join(bad_path, 'pic_foci_%s_%03d_%03d.png' % (prefix, imagedir_num, i)), cell.pic_foci)
+                    if hasattr(cell, 'pic_foci'):
+                        if (cell.pic_foci is not None):
+                          imsave(os.path.join(bad_path, 'pic_foci_%s_%03d_%03d.png' % (prefix, imagedir_num, i)), cell.pic_foci)
 
 
     def calculateSelected(self):
