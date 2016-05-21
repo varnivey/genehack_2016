@@ -361,6 +361,18 @@ class DarfiUI(QtGui.QMainWindow):
         self.rescaleButton.clicked.connect(self.fileMenuArea.getScaleFromSelected)
         buttonLayout.addWidget(self.rescaleButton)
 
+        picsSavePathLabel = QtGui.QLabel(self)
+        picsSavePathLabel.setText('Path for cell images')
+
+        self.picsSavePathLineEdit = QtGui.QLineEdit()
+
+        buttonLayout.addWidget(picsSavePathLabel)
+        buttonLayout.addWidget(self.picsSavePathLineEdit)
+
+        savePicsButton = QtGui.QPushButton("Save cell images")
+        savePicsButton.clicked.connect(self.fileMenuArea.saveCellPics)
+        buttonLayout.addWidget(savePicsButton)
+
         runCalcButton = QtGui.QPushButton("Calculate")
         runCalcButton.clicked.connect(self.fileMenuArea.calculateSelected)
         runCalcButton.setMinimumHeight(40)
