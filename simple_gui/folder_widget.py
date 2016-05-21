@@ -2,6 +2,8 @@ import sys, os
 sys.path.append(os.path.join('..','engine'))
 import pic_an
 from PyQt4 import QtGui,QtCore
+from scipy.misc import imsave
+
 '''
 This widget implements folders and pictures
 '''
@@ -150,6 +152,9 @@ class FolderWidget(QtGui.QWidget):
 
     def saveCellPics(self):
         '''Guys! Add your code here!'''
+        # def log_message(msg):
+            # with open('/home/kbulatov/genehack2016/log.txt', 'a') as logstream:
+                # logstream.write(msg + '\n')    
 
         path      = unicode(self.parent.picsSavePathLineEdit.text())
         good_path = os.path.join(path,'good_pics')
@@ -161,15 +166,27 @@ class FolderWidget(QtGui.QWidget):
         if not os.path.isdir(bad_path):
             os.mkdir(bad_path)
 
-
-        for imagedir in self.imageDirs:
-            for cell in imagedir.cells:
+        for imagedir_num, imagedir in enumerate(self.imageDirs):
+            # log_message(unicode(imagedir.dir_path).encode('utf8'))
+            prefix = os.path.split(unicode(imagedir.dir_path).encode('utf8'))[1]
+            # log_message(unicode(imagedir.nuclei_name).encode('utf8'))
+            # log_message(unicode(imagedir.foci_name).encode('utf8'))
+            # log_message('i have %d cells' % len(imagedir.cells))
+            for i, cell in enumerate(imagedir.cells):
                 if cell.is_active:
 #                    Save good cells somewhere
-                    pass
+                    # log_message(unicode('writing to %s' % good_path).encode('utf8'))
+                    imsave(os.path.join(good_path, 'nucleus_%s_%03d_%03d.png' % (prefix, imagedir_num, i)), cell.nucleus)
+                    imsave(os.path.join(good_path, 'pic_nucleus_%s_%03d_%03d.png' % (prefix, imagedir_num, i)), cell.pic_nucleus)
+                    if (cell.pic_foci is not None):
+                        imsave(os.path.join(good_path, 'pic_foci_%s_%03d_%03d.png' % (prefix, imagedir_num, i)), cell.pic_foci)
                 else:
 #                    Save bad cell somewhere
-                    pass
+                    # log_message(unicode('writing to %s' % bad_path).encode('utf8'))
+                    imsave(os.path.join(bad_path, 'nucleus_%s_%03d_%03d.png' % (prefix, imagedir_num, i)), cell.nucleus)
+                    imsave(os.path.join(bad_path, 'pic_nucleus_%s_%03d_%03d.png' % (prefix, imagedir_num, i)), cell.pic_nucleus)
+                    if (cell.pic_foci is not None):
+                        imsave(os.path.join(bad_path, 'pic_foci_%s_%03d_%03d.png' % (prefix, imagedir_num, i)), cell.pic_foci)
 
 
     def calculateSelected(self):
