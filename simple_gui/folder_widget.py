@@ -151,10 +151,21 @@ class FolderWidget(QtGui.QWidget):
     def saveCellPics(self):
         '''Guys! Add your code here!'''
 
+        path      = unicode(self.parent.picsSavePathLineEdit.text())
+        good_path = os.path.join(path,'good_pics')
+        bad_path  = os.path.join(path,'bad_pics')
+
+        if not os.path.isdir(good_path):
+            os.mkdir(good_path)
+
+        if not os.path.isdir(bad_path):
+            os.mkdir(bad_path)
+
+
         for imagedir in self.imageDirs:
             for cell in imagedir.cells:
                 if cell.is_active:
-#                    save good cell somewhere
+#                    Save good cells somewhere
                     pass
                 else:
 #                    Save bad cell somewhere
