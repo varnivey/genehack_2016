@@ -18,7 +18,7 @@ class TableWidget(QtGui.QTableWidget):
         self.verticalHeader().setMovable(True)
         self.horizontalHeader().setDefaultSectionSize(60)
         self.setMinimumWidth(237)
-        self.setMinimumHeight(260)
+        self.setMinimumHeight(120)
         self.setSizePolicy(QtGui.QSizePolicy.Expanding,QtGui.QSizePolicy.Minimum)
 
 

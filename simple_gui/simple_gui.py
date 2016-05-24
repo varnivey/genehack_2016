@@ -367,6 +367,7 @@ class DarfiUI(QtGui.QMainWindow):
         picsSavePathLabel.setText('Path for cell images')
 
         self.picsSavePathLineEdit = QtGui.QLineEdit()
+        self.picsSavePathLineEdit.setText(self.settings.pics_save_path)
 
         picsSavePathButton = QtGui.QPushButton("Select path for cell images...")
         picsSavePathButton.clicked.connect(self.fileMenuArea.picsSavePathDialog)
