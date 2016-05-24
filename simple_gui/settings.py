@@ -6,7 +6,9 @@ Created on Tue Dec 16 22:08:01 2014
 you can fin info about settings in engine/README file ;)
 """
 
-class Settings(object):      
+from os.path import expanduser
+
+class Settings(object):
     def __init__(self):
         self.nuclei_name='' # type 'unicode'
         self.foci_name='' # type 'unicode'
@@ -17,12 +19,13 @@ class Settings(object):
         self.min_foci_radius=3 # type 'int' range: 0 to 4294967296
         self.max_foci_radius=12 # type 'int' range: 0 to 4294967296
         self.allowed_foci_overlap=100 # type 'int' range: 0 to 100
-        self.normalize_intensity=True # type 'bool' 
+        self.normalize_intensity=True # type 'bool'
         self.foci_rescale_min=None # type 'float' range: 0 to 255.
         self.foci_rescale_max=None # type 'float' range: 0 to 255.
-        self.return_circles=True # type 'bool' 
+        self.return_circles=True # type 'bool'
         self.nuclei_color=0.66 # type 'float' range: 0 to 1.0
         self.foci_color=0.33 # type 'float' range: 0 to 1.0
+        self.pics_save_path = expanduser("~")
         self.rowOrder=['Cell number',
                     'Cell area',
                     'Mean intensity im1',

@@ -87,6 +87,7 @@ class DarfiUI(QtGui.QMainWindow):
         self.settings.foci_name=self.fociNameComboBox.currentText()
         self.settings.nuclei_name=self.nuclNameComboBox.currentText()
         self.fileMenuArea.setWorkDir(self.workDir)
+        self.picsSavePathLineEdit.setText(self.settings.pics_save_path)
         print "Default settings loaded"
 
 
@@ -115,6 +116,7 @@ class DarfiUI(QtGui.QMainWindow):
                     self.workDir,self.settings, paths = pickle.load(f)
                     self.fileMenuArea.openWorkDir(self.workDir)
                     self.fileMenuArea.setCheckedFromPaths(paths)
+                    self.picsSavePathLineEdit.setText(self.settings.pics_save_path)
                     if self.settings.foci_name=='--None--':
                         self.rescaleButton.setEnabled(False)
                     else:
@@ -366,8 +368,13 @@ class DarfiUI(QtGui.QMainWindow):
 
         self.picsSavePathLineEdit = QtGui.QLineEdit()
 
+        picsSavePathButton = QtGui.QPushButton("Select path for cell images...")
+        picsSavePathButton.clicked.connect(self.fileMenuArea.picsSavePathDialog)
+
         buttonLayout.addWidget(picsSavePathLabel)
+        buttonLayout.addWidget(picsSavePathButton)
         buttonLayout.addWidget(self.picsSavePathLineEdit)
+
 
         savePicsButton = QtGui.QPushButton("Save cell images")
         savePicsButton.clicked.connect(self.fileMenuArea.saveCellPics)

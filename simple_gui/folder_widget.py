@@ -150,11 +150,19 @@ class FolderWidget(QtGui.QWidget):
             self.refreshImages()
         return result
 
+    def picsSavePathDialog(self):
+        '''Set directory for cell images'''
+
+        path = unicode(QtGui.QFileDialog.getExistingDirectory(directory = self.workDir))
+        if path != '':
+            self.parent.picsSavePathLineEdit.setText(path)
+            self.parent.settings.pics_save_path = path
+
     def saveCellPics(self):
-        '''Guys! Add your code here!'''
+        '''Save cell images to separate files'''
         # def log_message(msg):
             # with open('/home/kbulatov/genehack2016/log.txt', 'a') as logstream:
-                # logstream.write(msg + '\n')    
+                # logstream.write(msg + '\n')
 
         path      = unicode(self.parent.picsSavePathLineEdit.text())
         good_path = os.path.join(path,'good_pics')
